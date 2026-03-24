@@ -10,14 +10,19 @@ import {
   AlertCircle,
   Clock,
   User,
+  Users,
+  BarChart3,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { addDailyRecord, getDailyRecordsByStaff, Staff } from '../utils/database';
+import { EmployeeManagement } from './EmployeeManagement';
+import { Reports } from './Reports';
 import countyLogo from 'figma:asset/4d1b08503629329c1d44e2860bd4dd50661b9923.png';
 
 export function StaffDashboard() {
   const { logout, currentUser } = useAuth();
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'overview' | 'employees' | 'reports'>('overview');
   const [showAddRecord, setShowAddRecord] = useState(false);
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],
@@ -102,9 +107,52 @@ export function StaffDashboard() {
         </div>
       </header>
 
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-6">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'overview'
+                  ? 'border-green-600 text-green-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <FileText className="w-4 h-4 inline mr-2" />
+              My Records
+            </button>
+            <button
+              onClick={() => setActiveTab('employees')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'employees'
+                  ? 'border-green-600 text-green-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Users className="w-4 h-4 inline mr-2" />
+              View Employees
+            </button>
+            <button
+              onClick={() => setActiveTab('reports')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'reports'
+                  ? 'border-green-600 text-green-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 inline mr-2" />
+              Reports
+            </button>
+          </div>
+        </div>
+      </div>
+
       <main className="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        {activeTab === 'overview' && (
+          <div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -343,6 +391,16 @@ export function StaffDashboard() {
             ))
           )}
         </div>
+      </div>
+        )}
+
+        {activeTab === 'employees' && (
+          <EmployeeManagement isAdmin={false} />
+        )}
+
+        {activeTab === 'reports' && (
+          <Reports />
+        )}
       </main>
     </div>
   );

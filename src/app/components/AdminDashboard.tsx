@@ -10,15 +10,19 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
+  BarChart3,
+  Settings,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getAllStaff, getAllDailyRecords } from '../utils/database';
+import { EmployeeManagement } from './EmployeeManagement';
+import { Reports } from './Reports';
 import countyLogo from 'figma:asset/4d1b08503629329c1d44e2860bd4dd50661b9923.png';
 
 export function AdminDashboard() {
   const { logout, currentUser } = useAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'overview' | 'employees' | 'records'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'employees' | 'records' | 'management' | 'reports'>('overview');
   const [searchTerm, setSearchTerm] = useState('');
 
   const staff = getAllStaff();
@@ -119,6 +123,28 @@ export function AdminDashboard() {
             >
               <FileText className="w-4 h-4 inline mr-2" />
               Daily Records ({records.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('management')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'management'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Settings className="w-4 h-4 inline mr-2" />
+              Employee Management
+            </button>
+            <button
+              onClick={() => setActiveTab('reports')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'reports'
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 inline mr-2" />
+              Reports & Analytics
             </button>
           </div>
         </div>
@@ -340,6 +366,14 @@ export function AdminDashboard() {
               )}
             </div>
           </div>
+        )}
+
+        {activeTab === 'management' && (
+          <EmployeeManagement isAdmin={true} />
+        )}
+
+        {activeTab === 'reports' && (
+          <Reports />
         )}
       </main>
     </div>
