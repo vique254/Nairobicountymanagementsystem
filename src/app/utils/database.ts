@@ -1,4 +1,11 @@
 // Mock database using localStorage for Nairobi City County Inspectorate
+postgresql://postgres:[Mpapalila1]@db.wsnbnfhvqhbnhlhuyztc.supabase.co:5432/postgres
+
+host:db.wsnbnfhvqhbnhlhuyztc.supabase.co
+port:5432
+database:postgres
+user:postgres
+
 
 export interface Staff {
   id: string;
