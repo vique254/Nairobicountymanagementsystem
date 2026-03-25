@@ -153,54 +153,54 @@ export function StaffDashboard() {
           <div>
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Total Records</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{myRecords.length}</p>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Total Records</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">{myRecords.length}</p>
+                  </div>
+                  <div className="bg-blue-100 p-3 rounded-lg">
+                    <FileText className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
               </div>
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <FileText className="w-6 h-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Today's Records</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{todayRecords.length}</p>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Today's Records</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">{todayRecords.length}</p>
+                  </div>
+                  <div className="bg-green-100 p-3 rounded-lg">
+                    <Calendar className="w-6 h-6 text-green-600" />
+                  </div>
+                </div>
               </div>
-              <div className="bg-green-100 p-3 rounded-lg">
-                <Calendar className="w-6 h-6 text-green-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Completed</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{completedRecords.length}</p>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Completed</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">{completedRecords.length}</p>
+                  </div>
+                  <div className="bg-emerald-100 p-3 rounded-lg">
+                    <CheckCircle className="w-6 h-6 text-emerald-600" />
+                  </div>
+                </div>
               </div>
-              <div className="bg-emerald-100 p-3 rounded-lg">
-                <CheckCircle className="w-6 h-6 text-emerald-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Follow-ups</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{pendingRecords.length}</p>
-              </div>
-              <div className="bg-orange-100 p-3 rounded-lg">
-                <AlertCircle className="w-6 h-6 text-orange-600" />
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Follow-ups</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">{pendingRecords.length}</p>
+                  </div>
+                  <div className="bg-orange-100 p-3 rounded-lg">
+                    <AlertCircle className="w-6 h-6 text-orange-600" />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
         {/* Profile Card */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
@@ -391,7 +391,7 @@ export function StaffDashboard() {
             ))
           )}
         </div>
-      </div>
+        </div>
         )}
 
         {activeTab === 'employees' && (
